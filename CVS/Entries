@@ -1,0 +1,25 @@
+/Makefile/1.9/Fri May 16 23:58:11 2008//
+/drdaqList/1.24/Sat Jan 15 22:30:38 2011//
+/picoList/1.1.1.1/Tue Mar  7 21:28:08 2006//
+D/RPM////
+D/bin////
+D/docs////
+D/graceUtils////
+D/icons////
+D/include////
+D/lib////
+D/nameServer////
+D/phidgetMgr////
+D/picoCourier////
+D/picoDriver////
+D/picoGUI////
+D/picoMgr////
+D/picoMgr-2.4////
+D/picoReader////
+D/qtGUI////
+D/qtGUI_python3////
+D/scripts////
+D/src////
+D/tasks////
+D/testing////
+D/working////

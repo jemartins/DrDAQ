@@ -1,0 +1,39 @@
+=c===========================================
+j001: intercept messages from picoReader to picoGUI contend the result of measurements
+Owner:  whoever
+LCE:  log cabin estimate
+Multiplier: multiplex efficiency factor (assigned by project manager)
+Priority: 
+Started:
+Completed:
+======================
+$Log: taskj001,v $
+Revision 1.3  2006/05/31 12:00:42  jemartins
+*** empty log message ***
+
+Revision 1.2  2006/05/25 19:08:52  bobfcsoft
+unclosed j001 and j001a
+
+Revision 1.1  2006/05/25 18:03:32  jemartins
+start
+
+======================
+
+DESCRIPTION OF WORK:
+The picoReader has the result of measurements and sent this to picoGUI
+
+What is required is intercept this message from picoReader to picoGUI 
+contend what is in sensor 1 ou sensor 2 and what is the elapsed time 
+or number of readings and put it in the existing display.
+
+---------------
+
+PREREQUISITES:
+any prerequisites go here
+
+---------------
+
+VALIDATION TESTING:
+The unit test is b003
+
+============================================

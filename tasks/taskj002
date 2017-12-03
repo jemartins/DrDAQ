@@ -1,0 +1,33 @@
+=c==========================================
+j002: Add remote connectivity via the SIMPL TCP/IP surrogates
+Owner:  whoever
+LCE:  log cabin estimate
+Multiplier: multiplex efficiency factor (assigned by project manager)
+Priority: 
+Started:
+Completed:
+======================
+$Log: taskj002,v $
+Revision 1.2  2007/05/28 22:11:07  jemartins
+close task
+
+Revision 1.1  2006/06/09 18:13:35  jemartins
+task j002 created
+
+
+======================
+DESCRIPTION OF WORK:
+
+In this instance picoGUI,  picoReader and Grace all 
+run on a local machine but picoMgr is run on a remote box
+
+---------------
+
+PREREQUISITES:
+any prerequisites go here
+
+---------------
+
+VALIDATION TESTING:
+
+============================================

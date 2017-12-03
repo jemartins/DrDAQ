@@ -1,0 +1,11 @@
+
+# This (bash) command can be used to conditionally load the module;
+# typically you might add this into /etc/rc.local to load the module
+# at boot time.
+
+KERNEL_VERSION=`uname -r`
+MODULE_INSTALLDIR=/lib/modules/$KERNEL_VERSION/kernel/drivers/parport
+
+[ -z "$(lsmod|grep -E '^picopar +')" ] && insmod $MODULE_INSTALLDIR/picopar.ko
+
+mknod /dev/picopar0 c 242 0

@@ -1,0 +1,35 @@
+=c================================================
+b004a: incorporate the new START message into the GUI
+Owner:  whoever
+LCE:  log cabin estimate
+Multiplier: multiplex efficiency factor (assigned by project manager)
+Priority: 
+Started:
+Completed:
+======================
+$Log: taskb004a,v $
+Revision 1.2  2006/05/12 14:01:13  bobfcsoft
+changes
+
+Revision 1.1  2006/05/05 23:39:08  bobfcsoft
+new tasks
+
+======================
+
+DESCRIPTION OF WORK:
+As part of the main task b004 the PICO_START_MSG has
+been significantly enhanced.
+	
+This new message has to be assembled and sent from 
+the picoGUI.
+---------------
+
+PREREQUISITES:
+any prerequisites go here
+
+---------------
+
+VALIDATION TESTING:
+The unit test is b001
+
+============================================

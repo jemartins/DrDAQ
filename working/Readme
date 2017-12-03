@@ -1,0 +1,29 @@
+# CVS commands:
+#
+#$Log: Readme,v $
+#Revision 1.5  2006/04/21 01:33:47  jemartins
+#teste no Readme
+#
+#Revision 1.4  2006/03/08 11:50:28  jemartins
+#.
+#
+#Revision 1.3  2006/03/08 11:49:23  jemartins
+#.
+#
+#Revision 1.2  2006/03/08 02:18:47  jemartins
+#teste2
+#
+#
+#
+
+cvs update  	  		you run this to update your local code tree 
+				from the CVS tree.   ie.  it will pickup any 
+				changes that another developer commited
+
+cvs add <dirname or filename>   this will be used to create new 
+				directories or files in the CVS repository
+
+cvs commit -m "some words"    	this will be used to place changes (or new 
+				files added above)  into the repository
+#===================================
+

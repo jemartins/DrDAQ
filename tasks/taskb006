@@ -1,0 +1,51 @@
+=c=====================================================================
+b006: generalize the measurements to include all DrDAQ sensors
+Owner:  whoever
+LCE:  log cabin estimate
+Multiplier: multiplex efficiency factor (assigned by project manager)
+Priority: 
+Started:
+Completed:
+======================
+$Log: taskb006,v $
+Revision 1.2  2006/05/31 12:00:42  jemartins
+*** empty log message ***
+
+Revision 1.1  2006/05/05 23:39:08  bobfcsoft
+new tasks
+
+======================
+
+DESCRIPTION OF WORK:
+The most general solution is to invent new tokens one
+for each possible measurement type.
+
+This allows for the possibility that the message structure can
+be different for each measurement type.
+
+This task concerns the plumbing of the picoMgr to accomodate
+these other measurements.
+
+typedef enum
+	{
+	DRDAQ_SOUND_WAVEFORM=1,
+	DRDAQ_SOUND_LEVEL,
+	DRDAQ_VOLTAGE,
+	DRDAQ_RESISTANCE,
+	DRDAQ_PH,
+	DRDAQ_TEMPERATURE,
+	DRDAQ_LIGHT,
+	MAX_NUM_DRDAQ_MODES
+	}DRDAQ_MODE;
+
+---------------
+
+PREREQUISITES:
+any prerequisites go here
+
+---------------
+
+VALIDATION TESTING:
+The unit test is b002
+
+============================================

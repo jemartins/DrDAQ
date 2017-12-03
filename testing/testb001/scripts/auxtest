@@ -1,0 +1,24 @@
+#!/bin/bash
+#
+#$Log: auxtest,v $
+#Revision 1.1  2006/03/23 22:31:07  bobfcsoft
+#b001 improvements
+#
+#
+
+TEST_NO=b001
+TEST_DESC="picoGUI local unit test"
+
+TEST_DIR=$TEST_HOME/testing/test$TEST_NO
+OUTFILE=$TEST_DIR/results/test.out
+
+
+cd $DRDAQ_HOME/picoGUI/bin
+./picoGUI.tcl \
+	-N DRDAQ \
+	-p PICOSIM \
+	-l LOGGER
+
+$SIMPL_HOME/bin/fcslay DRDAQ
+
+echo "Test finished you can run posttest $TEST_NO for result"

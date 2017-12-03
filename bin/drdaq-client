@@ -1,0 +1,171 @@
+#!/bin/bash
+#
+# DrDAQ client project
+#
+# autor: Jose Eduardo Martins
+#        jemartins@fis.unb.br 
+#
+###################################################################
+
+DESC="DrDAQ Application project"
+
+if [ ! -d $HOME/tmp ]; then
+  mkdir $HOME/tmp
+fi
+
+if [ ! -d $HOME/.drdaq ]; then
+  mkdir $HOME/.drdaq
+  mkdir $HOME/.drdaq/fifo
+fi
+
+rm -f $HOME/.drdaq/fifo/*
+
+# set this two vars to your drdaq and simpl installation tree
+export DRDAQ_HOME=/usr/lib/drdaq
+export SIMPL_HOME=/usr/lib/simpl
+
+WORK_DIR=$HOME/.drdaq
+export FIFO_PATH=$WORK_DIR/fifo
+OUTFILE=$WORK_DIR/drdaq.log
+
+#SERVERHOST=10.41.10.169
+
+echo -n "Digite o IP do servidor (ex.: 10.41.11.41): "
+read SERVERHOST
+#echo "OK, SERVERHOST=$SERVERHOST"
+
+#
+# bulk of script goes here
+# 
+echo "==============================" > $OUTFILE
+echo $DESC >>  $OUTFILE
+date >> $OUTFILE
+echo "==============================" >> $OUTFILE
+echo "" >> $OUTFILE
+
+function kill_process {
+
+	# kill old DrDAQ processes that were casually left behind
+	# in a previous run
+	$SIMPL_HOME/bin/fcslay PICOGUI > /dev/null 2>&1
+	$SIMPL_HOME/bin/fcslay READER > /dev/null 2>&1
+	$SIMPL_HOME/bin/fcslay LOGGER > /dev/null 2>&1
+
+	# mudando divisao entre os campos.
+        # Set IFS to newline only.
+	#IFS=$'\n'
+
+	process=$(ps ax | grep logger | awk '{print $1}')
+	for i in $process; do > /dev/null 2>&1
+       		kill -9 $i  > /dev/null 2>&1
+	done
+    	
+	process=$(ps ax | grep protocolRouter | awk '{print $1}')
+	for i in $process; do > /dev/null 2>&1
+		kill -9 $i > /dev/null 2>&1
+	done
+
+	process=$(ps ax | grep surrogateTcp | awk '{print $1}')
+	for i in $process; do > /dev/null 2&>1
+		 kill -9 $i > /dev/null 2>&1
+	done
+
+	process=$(ps ax | grep picoReader | awk '{print $1}')
+	for i in $process; do > /dev/null 2&>1
+		 kill -9 $i > /dev/null 2>&1
+	done
+
+	process=$(ps ax | grep picoGUI | awk '{print $1}')
+	for i in $process; do > /dev/null 2&>1
+		kill -9 $i > /dev/null 2>&1
+	done
+
+} # end kill_process
+
+function start_process {
+
+	#cd $SIMPL_HOME/bin
+
+	#echo "	============================================"
+	$SIMPL_HOME/bin/protocolRouter &
+	#echo "protocolRouter inicializado processo(s) =" 
+	#echo "$(ps ax | grep protocoRouter | awk '{print $1}')"
+	$SIMPL_HOME/bin/surrogateTcp &
+	#echo "surrogateTcp inicializado processo(s) =" 
+	#echo "$(ps ax | grep surrogateTcp | awk '{print $1}')"
+	$SIMPL_HOME/bin/fclogger -n LOGGER > $OUTFILE &
+	#echo "fclogger inicializado processo(s) ="
+	#echo "$(ps ax | grep fclogger | awk '{print $1}')"
+
+} # end start_process
+
+kill_process > /dev/null 2>&1
+
+time_start=$(echo "$(date +%M)*60+$(date +%S)" | bc)
+#echo "time_start=$time_start"
+
+TESTE=initialize
+while [ ! "$TESTE" == "PICOGUI" ]; do
+	start_process
+	cd $DRDAQ_HOME/nameServer/bin
+	MYSTR=`./requestName -n REQUEST -s $SERVERHOST:NAMESERVER -l LOGGER`
+	GUI_NAME=`echo $MYSTR | cut -f 1 -d ,`
+	READER_NAME=`echo $MYSTR | cut -f 2 -d ,`
+	MY_ID=`echo $MYSTR | cut -f 3 -d ,`
+	TESTE=$(echo $MYSTR | cut -f 1 -d , | cut -f 1 -d _)
+	#echo "AQUI TESTE=$TESTE"
+	conectou=`echo "$(echo $TESTE | cut -f 1 -d : | cut -f1 -d " ")"`
+	#echo "AQUI conectou=$conectou"
+	if [ "$conectou" == "initialize" ] || [ "$conectou" == "retrying" ]; then
+		echo "=================================================="
+	 	echo "Falha ao contactar o Servidor $SERVERHOST! Tentando de novo..."
+		#echo "AQUI IF -> TESTE=$TESTE"
+		kill_process > /dev/null 2>&1
+		TESTE=initialize
+	fi
+	#echo "TESTE=$TESTE"
+	time_current=$(echo "$(date +%M)*60+$(date +%S)" | bc)  
+	#echo "time_current=$time_current"
+	time_elapsed=$(echo "$time_current - $time_start" | bc)
+	#echo "time_elapsed=$time_elapsed"
+	if [ $time_elapsed -gt 20 ]; then
+		echo ""
+		echo "========================================================"
+		echo "--> Servidor não responde! Tempo esgotado! Encerrando..."
+		echo "========================================================"
+		echo ""
+		kill_process > /dev/null 2>&1
+		exit 1
+	fi
+done
+
+echo ""
+echo "============================================"
+echo -e "*** Estabelecido contato com o Servidor! ***\a"
+echo "============================================"
+echo ""
+echo "GUI_NAME=$GUI_NAME READER_NAME=$READER_NAME MY_ID=$MY_ID" 
+
+cd $DRDAQ_HOME/picoReader/bin
+./picoReader.tcl \
+        -N $READER_NAME \
+        -g $GUI_NAME \
+        -p $SERVERHOST:PICOMGR \
+        -I $MY_ID \
+        -l LOGGER &
+
+cd $DRDAQ_HOME/picoGUI/bin
+./picoGUI.tcl \
+        -N $GUI_NAME \
+        -f $WORK_DIR/fifo \
+        -p $SERVERHOST:PICOMGR \
+        -I $MY_ID \
+        -l LOGGER 
+
+echo "freeing ID=$MY_ID"
+echo "========================================================"
+
+cd $DRDAQ_HOME/nameServer/bin
+./freeName -n FREE -s $SERVERHOST:NAMESERVER -l LOGGER -I $MY_ID
+
+kill_process > /dev/null 2>&1

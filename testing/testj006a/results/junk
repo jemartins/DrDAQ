@@ -1,0 +1,4 @@
+fclogger starting
+[nameServ:initialize  ] 212224.053 executable: <./nameServer> cksum=2469826163
+[nameServ:initialize  ] 212224.053 SIMPL name: <NAMESERVER> slot=0
+[nameServ:initialize  ] 212224.053 trace logger mask = 0x00FF

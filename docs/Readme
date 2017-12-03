@@ -1,0 +1,132 @@
+***************************
+** Revision History:
+** $Log: Readme,v $
+** Revision 1.18  2011/02/12 15:01:36  jemartins
+** clean steps for instalation
+**
+** Revision 1.17  2011/02/12 14:57:25  jemartins
+** clean steps for instalation
+**
+** Revision 1.16  2011/01/15 22:30:18  jemartins
+** *** empty log message ***
+**
+** Revision 1.15  2010/10/19 15:25:07  jemartins
+** Changes in install swig
+**
+** Revision 1.14  2010/10/18 01:33:14  jemartins
+** changes in swig installation
+**
+** Revision 1.13  2008/10/22 14:22:39  jemartins
+** get swig from your distribuition
+**
+** Revision 1.12  2007/11/11 14:44:45  jemartins
+** changed SIMPL URL
+**
+** Revision 1.11  2007/11/11 14:24:16  jemartins
+** symbolik link for swig
+**
+** Revision 1.10  2007/04/18 12:55:19  jemartins
+** added version control
+**
+***************************
+
+****************************
+**
+** DrDAQ Application Project
+**
+****************************
+
+============
+Introduction:
+============
+
+DrDAQ is projected to read all the sensors of the DrDAQ device and plot them in
+the Grace window. By now the program is capable to read two sensors simultaneously and convert to the units of the Temperature, Light, Sound Level and Voltage. 
+Waveform, Resistance and pH are read directly from units of ADC.
+
+==============
+prerequisites:
+==============
+
+    You need to have in your system:
+ 
+    1. Tcl, Tcl-devel and Tk
+
+    2. gcc and gcc-c++
+
+    3. grace and grace-devel.
+    
+    4. For newer versions of "SIMPL", "SIMPL Tcl" and "SIMPL unit test scripts". 
+       Transfer to the address http://www.icanprogram.com/simpl/. 
+
+       Untar and follow all the instructions of the installation from the file 
+       INSTALL.simpl. Don't forget to create correctly all the environment 
+       variables. 
+    
+    5. Driver of DrDAQ for linux supplied by Picotech.
+       
+	You can find sources of driver for differents kernel version on
+	picoDriver directory. See README.TXT to compile and install correctly
+	the module picopar.ko and create /dev/picopar#.
+
+    6. Standard installation of the SWIG. 
+       The binary file  swig must have do in /usr/bin/ directory
+
+       
+============
+Installation:
+============
+
+    1. Untar the drdaq.tar.gz in a preference fold. 
+
+       Lets assume you are going to install it in your HOME directory:
+
+	$ cd $HOME
+    	$ tar -zxvf drdaq.tar.gz 
+    	$ cd drdaq
+	$ make
+    	$ make install
+ 
+    2. Create the environment variables down listed. Normally you can do it
+       inserting the following line in your ~/.bash_profile:
+    
+    	export DRDAQ_HOME=$HOME/drdaq
+    	export TEST_HOME=$DRDAQ_HOME
+    	PATH=$PATH:$DRDAQ_HOME/scripts
+    
+        Note: 
+        From the installation of the SIMPL, probably you have the following lines
+        in your ~/.bash_profile. (If not, is time to insert them):
+        
+        export SIMPL_HOME=$HOME/simpl
+        export FIFO_PATH=$SIMPL_HOME/fifo
+        PATH=$PATH:$SIMPL_HOME/scripts
+        
+        Hint: 
+        To do the changing in the ~/bash_profile, type the command:
+        
+        $ source ~/.bash_profile
+
+=========
+Execution:
+=========
+
+	To run the test-unit from DrDAQ type:
+    
+	$ cd $DRDAQ_HOME
+	
+    	(for kernel 2.4)
+    	$ dotest b004
+    	
+    	(for kernel 2.6)
+    	$ dotest j004
+    	
+    	There are other test-units you can utilize. 
+        There are in the directory $DRDAQ_HOME/testing
+
+   ----------------------------------------------------------------------- 
+   You can directly run DrDAQ from the script $DRDAQ_HOME/bin/drdaq. Before
+   you need to edit this script making right DRDAQ_HOME and SIMPL_HOME 
+   variables to reflect correctly your installation.
+   ------------------------------------------------------------------------ 
+

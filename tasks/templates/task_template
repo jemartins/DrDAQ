@@ -1,0 +1,32 @@
+============================================
+XXXX: whateverthedescriptionis
+Owner:  whoever
+LCE:  log cabin estimate
+Multiplier: multiplex efficiency factor (assigned by project manager)
+Priority: 
+Started:
+Completed:
+======================
+$Log: task_template,v $
+Revision 1.1  2006/03/23 00:03:37  bobfcsoft
+changes
+
+Revision 1.1  2004/09/26 10:24:51  bob
+added seetask script
+
+======================
+DESCRIPTION OF WORK:
+task description goes here
+
+---------------
+
+PREREQUISITES:
+any prerequisites go here
+
+---------------
+
+VALIDATION TESTING:
+test number for validation test goes here and/or a short
+description of what the test does
+
+============================================

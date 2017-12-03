@@ -1,0 +1,354 @@
+DrDAQ Top Level Build all starting
+Qui Fev 16 19:37:13 BRST 2012
+make[1]: Entrando no diretório `/usr/lib/drdaq/picoMgr'
+drdaq picoMgr build <all> starting
+Qui Fev 16 19:37:13 BRST 2012
+make[2]: Entrando no diretório `/usr/lib/drdaq/picoMgr/src'
+picoMgr/src build starting
+picoMgr all
+make[2]: Saindo do diretório `/usr/lib/drdaq/picoMgr/src'
+make[2]: Entrando no diretório `/usr/lib/drdaq/picoMgr/test'
+============== picoMgr/test starting ================
+make[3]: Entrando no diretório `/usr/lib/drdaq/picoMgr/test'
+
+--------------------------------------------------------------------
+Compiling autoStim.c -> obj/autoStim.o
+
+make[3]: Saindo do diretório `/usr/lib/drdaq/picoMgr/test'
+cc -c -g -Wall -I ../include -I ../../include -I /usr/lib/simpl/include -o obj/autoStim.o autoStim.c
+make[3]: Entrando no diretório `/usr/lib/drdaq/picoMgr/test'
+
+--------------------------------------------------------------------
+Compiling obj/autoStim.o -> ../bin/autoStim
+
+make[3]: Saindo do diretório `/usr/lib/drdaq/picoMgr/test'
+cc -o ../bin/autoStim obj/autoStim.o obj/picoStimInit.o obj/picoStimUtils.o -L /usr/lib/simpl/lib -lsimpllog -lsimpl -lsimplmisc
+make[3]: Entrando no diretório `/usr/lib/drdaq/picoMgr/test'
+
+--------------------------------------------------------------------
+Compiling autoguiStim.c -> obj/autoguiStim.o
+
+make[3]: Saindo do diretório `/usr/lib/drdaq/picoMgr/test'
+cc -c -g -Wall -I ../include -I ../../include -I /usr/lib/simpl/include -o obj/autoguiStim.o autoguiStim.c
+make[3]: Entrando no diretório `/usr/lib/drdaq/picoMgr/test'
+
+--------------------------------------------------------------------
+Compiling obj/autoguiStim.o -> ../bin/autoguiStim
+
+make[3]: Saindo do diretório `/usr/lib/drdaq/picoMgr/test'
+cc -o ../bin/autoguiStim obj/autoguiStim.o obj/guiStimInit.o obj/guiStimUtils.o -L /usr/lib/simpl/lib -lsimpllog -lsimpl -lsimplmisc
+make[3]: Entrando no diretório `/usr/lib/drdaq/picoMgr/test'
+============== picoMgr/test <all> done ================
+make[3]: Saindo do diretório `/usr/lib/drdaq/picoMgr/test'
+make[2]: Saindo do diretório `/usr/lib/drdaq/picoMgr/test'
+drdaq picoMgr <all> done
+Qui Fev 16 19:37:13 BRST 2012
+make[1]: Saindo do diretório `/usr/lib/drdaq/picoMgr'
+make[1]: Entrando no diretório `/usr/lib/drdaq/picoReader'
+drdaq picoReader build <all> starting
+Qui Fev 16 19:37:13 BRST 2012
+make[2]: Entrando no diretório `/usr/lib/drdaq/picoReader/src'
+Preparing DrDAQ picoReader ...
+make[3]: Entrando no diretório `/usr/lib/drdaq/picoReader/src'
+Preparing DrDAQ picoReader ...
+make[3]: Saindo do diretório `/usr/lib/drdaq/picoReader/src'
+make[2]: Saindo do diretório `/usr/lib/drdaq/picoReader/src'
+make[2]: Entrando no diretório `/usr/lib/drdaq/picoReader/test'
+picoReader/test build starting
+picoReader/test all
+make[2]: Saindo do diretório `/usr/lib/drdaq/picoReader/test'
+drdaq picoReader <all> done
+Qui Fev 16 19:37:13 BRST 2012
+make[1]: Saindo do diretório `/usr/lib/drdaq/picoReader'
+make[1]: Entrando no diretório `/usr/lib/drdaq/picoGUI'
+drdaq picoMgr build <all> starting
+Qui Fev 16 19:37:13 BRST 2012
+make[2]: Entrando no diretório `/usr/lib/drdaq/picoGUI/src'
+picoGUI build starting
+picoGUI all
+make[2]: Saindo do diretório `/usr/lib/drdaq/picoGUI/src'
+make[2]: Entrando no diretório `/usr/lib/drdaq/picoGUI/test'
+=============== picoGUI/test starting ================
+make[3]: Entrando no diretório `/usr/lib/drdaq/picoGUI/test'
+=============== picoGUI/test <all> done ================
+make[3]: Saindo do diretório `/usr/lib/drdaq/picoGUI/test'
+make[2]: Saindo do diretório `/usr/lib/drdaq/picoGUI/test'
+drdaq picoMgr <all> done
+Qui Fev 16 19:37:13 BRST 2012
+make[1]: Saindo do diretório `/usr/lib/drdaq/picoGUI'
+make[1]: Entrando no diretório `/usr/lib/drdaq/nameServer'
+drdaq nameServer build <all> starting
+Qui Fev 16 19:37:13 BRST 2012
+make[2]: Entrando no diretório `/usr/lib/drdaq/nameServer/src'
+nameServer/src build starting
+nameServer all
+make[2]: Saindo do diretório `/usr/lib/drdaq/nameServer/src'
+make[2]: Entrando no diretório `/usr/lib/drdaq/nameServer/test'
+============== nameServer/test starting ================
+make[3]: Entrando no diretório `/usr/lib/drdaq/nameServer/test'
+============== nameServer/test <all> done ================
+make[3]: Saindo do diretório `/usr/lib/drdaq/nameServer/test'
+make[2]: Saindo do diretório `/usr/lib/drdaq/nameServer/test'
+drdaq nameServer <all> done
+Qui Fev 16 19:37:13 BRST 2012
+make[1]: Saindo do diretório `/usr/lib/drdaq/nameServer'
+make[1]: Entrando no diretório `/usr/lib/drdaq/graceUtils'
+drdaq graceUtils build <all> starting
+Qui Fev 16 19:37:13 BRST 2012
+make[2]: Entrando no diretório `/usr/lib/drdaq/graceUtils/src'
+/usr/bin/swig -tcl graceutils.i
+created graceutils_wrap.c
+gcc  -fpic -c graceutils.c graceutils_wrap.c
+created graceutils_wrap.o
+gcc -shared graceutils.o graceutils_wrap.o -o libgrace.so.0 -lgrace_np
+created libgrace.so.0
+all done
+make[2]: Saindo do diretório `/usr/lib/drdaq/graceUtils/src'
+drdaq graceUtils <all> done
+Qui Fev 16 19:37:14 BRST 2012
+make[1]: Saindo do diretório `/usr/lib/drdaq/graceUtils'
+make[1]: Entrando no diretório `/usr/lib/drdaq/phidgetMgr'
+drdaq picoMgr build <all> starting
+Qui Fev 16 19:37:14 BRST 2012
+make[2]: Entrando no diretório `/usr/lib/drdaq/phidgetMgr/src'
+picoMgr/src build starting
+mkdir obj
+chmod a+w obj
+mkdir ../bin
+chmod a+w ../bin
+make[3]: Entrando no diretório `/usr/lib/drdaq/phidgetMgr/src'
+
+--------------------------------------------------------------------
+Compiling picoMgr.c -> obj/picoMgr.o
+
+make[3]: Saindo do diretório `/usr/lib/drdaq/phidgetMgr/src'
+cc -c -Wall -I ../include -I ../../include -I ../../../pico -I /usr/lib/simpl/include -o obj/picoMgr.o picoMgr.c
+make[3]: Entrando no diretório `/usr/lib/drdaq/phidgetMgr/src'
+
+--------------------------------------------------------------------
+Compiling picoMgrInit.c -> obj/picoMgrInit.o
+
+make[3]: Saindo do diretório `/usr/lib/drdaq/phidgetMgr/src'
+cc -c -Wall -I ../include -I ../../include -I ../../../pico -I /usr/lib/simpl/include -o obj/picoMgrInit.o picoMgrInit.c
+make[3]: Entrando no diretório `/usr/lib/drdaq/phidgetMgr/src'
+
+--------------------------------------------------------------------
+Compiling picoMgrUtils.c -> obj/picoMgrUtils.o
+
+make[3]: Saindo do diretório `/usr/lib/drdaq/phidgetMgr/src'
+cc -c -Wall -I ../include -I ../../include -I ../../../pico -I /usr/lib/simpl/include -o obj/picoMgrUtils.o picoMgrUtils.c
+picoMgrUtils.c: In function ‘turnLedOff’:
+picoMgrUtils.c:172:1: warning: ‘rc’ is used uninitialized in this function
+make[3]: Entrando no diretório `/usr/lib/drdaq/phidgetMgr/src'
+
+--------------------------------------------------------------------
+Compiling obj/picoMgr.o -> ../bin/picoMgr
+
+make[3]: Saindo do diretório `/usr/lib/drdaq/phidgetMgr/src'
+cc -o ../bin/picoMgr obj/picoMgr.o obj/picoMgrInit.o obj/picoMgrUtils.o -L /usr/lib/simpl/lib -lsimpl -lsimplmisc -lsimpllog -lm
+picoMgr all
+make[2]: Saindo do diretório `/usr/lib/drdaq/phidgetMgr/src'
+make[2]: Entrando no diretório `/usr/lib/drdaq/phidgetMgr/test'
+============== picoMgr/test starting ================
+mkdir obj
+chmod a+w obj
+make[3]: Entrando no diretório `/usr/lib/drdaq/phidgetMgr/test'
+
+--------------------------------------------------------------------
+Compiling picoStim.c -> obj/picoStim.o
+
+make[3]: Saindo do diretório `/usr/lib/drdaq/phidgetMgr/test'
+cc -c -g -Wall -I ../include -I ../../include -I /usr/lib/simpl/include -o obj/picoStim.o picoStim.c
+make[3]: Entrando no diretório `/usr/lib/drdaq/phidgetMgr/test'
+
+--------------------------------------------------------------------
+Compiling picoStimInit.c -> obj/picoStimInit.o
+
+make[3]: Saindo do diretório `/usr/lib/drdaq/phidgetMgr/test'
+cc -c -g -Wall -I ../include -I ../../include -I /usr/lib/simpl/include -o obj/picoStimInit.o picoStimInit.c
+make[3]: Entrando no diretório `/usr/lib/drdaq/phidgetMgr/test'
+
+--------------------------------------------------------------------
+Compiling picoStimUtils.c -> obj/picoStimUtils.o
+
+make[3]: Saindo do diretório `/usr/lib/drdaq/phidgetMgr/test'
+cc -c -g -Wall -I ../include -I ../../include -I /usr/lib/simpl/include -o obj/picoStimUtils.o picoStimUtils.c
+make[3]: Entrando no diretório `/usr/lib/drdaq/phidgetMgr/test'
+
+--------------------------------------------------------------------
+Compiling obj/picoStim.o -> ../bin/picoStim
+
+make[3]: Saindo do diretório `/usr/lib/drdaq/phidgetMgr/test'
+cc -o ../bin/picoStim obj/picoStim.o obj/picoStimInit.o obj/picoStimUtils.o -L /usr/lib/simpl/lib -lsimpllog -lsimpl -lsimplmisc
+make[3]: Entrando no diretório `/usr/lib/drdaq/phidgetMgr/test'
+
+--------------------------------------------------------------------
+Compiling autoStim.c -> obj/autoStim.o
+
+make[3]: Saindo do diretório `/usr/lib/drdaq/phidgetMgr/test'
+cc -c -g -Wall -I ../include -I ../../include -I /usr/lib/simpl/include -o obj/autoStim.o autoStim.c
+make[3]: Entrando no diretório `/usr/lib/drdaq/phidgetMgr/test'
+
+--------------------------------------------------------------------
+Compiling obj/autoStim.o -> ../bin/autoStim
+
+make[3]: Saindo do diretório `/usr/lib/drdaq/phidgetMgr/test'
+cc -o ../bin/autoStim obj/autoStim.o obj/picoStimInit.o obj/picoStimUtils.o -L /usr/lib/simpl/lib -lsimpllog -lsimpl -lsimplmisc
+make[3]: Entrando no diretório `/usr/lib/drdaq/phidgetMgr/test'
+
+--------------------------------------------------------------------
+Compiling guiStim.c -> obj/guiStim.o
+
+make[3]: Saindo do diretório `/usr/lib/drdaq/phidgetMgr/test'
+cc -c -g -Wall -I ../include -I ../../include -I /usr/lib/simpl/include -o obj/guiStim.o guiStim.c
+guiStim.c: In function ‘main’:
+guiStim.c:209:6: warning: format ‘%d’ expects type ‘int’, but argument 4 has type ‘double’
+make[3]: Entrando no diretório `/usr/lib/drdaq/phidgetMgr/test'
+
+--------------------------------------------------------------------
+Compiling guiStimInit.c -> obj/guiStimInit.o
+
+make[3]: Saindo do diretório `/usr/lib/drdaq/phidgetMgr/test'
+cc -c -g -Wall -I ../include -I ../../include -I /usr/lib/simpl/include -o obj/guiStimInit.o guiStimInit.c
+make[3]: Entrando no diretório `/usr/lib/drdaq/phidgetMgr/test'
+
+--------------------------------------------------------------------
+Compiling guiStimUtils.c -> obj/guiStimUtils.o
+
+make[3]: Saindo do diretório `/usr/lib/drdaq/phidgetMgr/test'
+cc -c -g -Wall -I ../include -I ../../include -I /usr/lib/simpl/include -o obj/guiStimUtils.o guiStimUtils.c
+make[3]: Entrando no diretório `/usr/lib/drdaq/phidgetMgr/test'
+
+--------------------------------------------------------------------
+Compiling obj/guiStim.o -> ../bin/guiStim
+
+make[3]: Saindo do diretório `/usr/lib/drdaq/phidgetMgr/test'
+cc -o ../bin/guiStim obj/guiStim.o obj/guiStimInit.o obj/guiStimUtils.o -L /usr/lib/simpl/lib -lsimpllog -lsimpl -lsimplmisc
+make[3]: Entrando no diretório `/usr/lib/drdaq/phidgetMgr/test'
+
+--------------------------------------------------------------------
+Compiling autoguiStim.c -> obj/autoguiStim.o
+
+make[3]: Saindo do diretório `/usr/lib/drdaq/phidgetMgr/test'
+cc -c -g -Wall -I ../include -I ../../include -I /usr/lib/simpl/include -o obj/autoguiStim.o autoguiStim.c
+make[3]: Entrando no diretório `/usr/lib/drdaq/phidgetMgr/test'
+
+--------------------------------------------------------------------
+Compiling obj/autoguiStim.o -> ../bin/autoguiStim
+
+make[3]: Saindo do diretório `/usr/lib/drdaq/phidgetMgr/test'
+cc -o ../bin/autoguiStim obj/autoguiStim.o obj/guiStimInit.o obj/guiStimUtils.o -L /usr/lib/simpl/lib -lsimpllog -lsimpl -lsimplmisc
+make[3]: Entrando no diretório `/usr/lib/drdaq/phidgetMgr/test'
+============== picoMgr/test <all> done ================
+make[3]: Saindo do diretório `/usr/lib/drdaq/phidgetMgr/test'
+make[2]: Saindo do diretório `/usr/lib/drdaq/phidgetMgr/test'
+drdaq picoMgr <all> done
+Qui Fev 16 19:37:14 BRST 2012
+make[1]: Saindo do diretório `/usr/lib/drdaq/phidgetMgr'
+Done DrDAQ TOP LEVEL all done
+Qui Fev 16 19:37:14 BRST 2012
+DrDAQ Top Level Build install starting
+Qui Fev 16 19:37:14 BRST 2012
+make[1]: Entrando no diretório `/usr/lib/drdaq/picoMgr'
+drdaq picoMgr build <install> starting
+Qui Fev 16 19:37:14 BRST 2012
+make[2]: Entrando no diretório `/usr/lib/drdaq/picoMgr/src'
+picoMgr/src build starting
+cp ../bin/picoMgr ../../bin/picoMgr
+picoMgr/src install
+make[2]: Saindo do diretório `/usr/lib/drdaq/picoMgr/src'
+make[2]: Entrando no diretório `/usr/lib/drdaq/picoMgr/test'
+============== picoMgr/test starting ================
+make[3]: Entrando no diretório `/usr/lib/drdaq/picoMgr/test'
+============== picoMgr/test <install> done ================
+make[3]: Saindo do diretório `/usr/lib/drdaq/picoMgr/test'
+make[2]: Saindo do diretório `/usr/lib/drdaq/picoMgr/test'
+drdaq picoMgr <install> done
+Qui Fev 16 19:37:14 BRST 2012
+make[1]: Saindo do diretório `/usr/lib/drdaq/picoMgr'
+make[1]: Entrando no diretório `/usr/lib/drdaq/picoReader'
+drdaq picoReader build <install> starting
+Qui Fev 16 19:37:14 BRST 2012
+make[2]: Entrando no diretório `/usr/lib/drdaq/picoReader/src'
+Preparing DrDAQ picoReader ...
+cp ../bin/picoReader.tcl ../../bin/picoReader.tcl
+make[3]: Entrando no diretório `/usr/lib/drdaq/picoReader/src'
+Preparing DrDAQ picoReader ...
+make[3]: Saindo do diretório `/usr/lib/drdaq/picoReader/src'
+make[2]: Saindo do diretório `/usr/lib/drdaq/picoReader/src'
+make[2]: Entrando no diretório `/usr/lib/drdaq/picoReader/test'
+picoReader/test build starting
+picoReader/test install
+make[2]: Saindo do diretório `/usr/lib/drdaq/picoReader/test'
+drdaq picoReader <install> done
+Qui Fev 16 19:37:14 BRST 2012
+make[1]: Saindo do diretório `/usr/lib/drdaq/picoReader'
+make[1]: Entrando no diretório `/usr/lib/drdaq/picoGUI'
+drdaq picoMgr build <install> starting
+Qui Fev 16 19:37:14 BRST 2012
+make[2]: Entrando no diretório `/usr/lib/drdaq/picoGUI/src'
+picoGUI build starting
+cp ../bin/picoGUI.tcl ../../bin/picoGUI.tcl
+picoGUI install
+make[2]: Saindo do diretório `/usr/lib/drdaq/picoGUI/src'
+make[2]: Entrando no diretório `/usr/lib/drdaq/picoGUI/test'
+=============== picoGUI/test starting ================
+make[3]: Entrando no diretório `/usr/lib/drdaq/picoGUI/test'
+=============== picoGUI/test <install> done ================
+make[3]: Saindo do diretório `/usr/lib/drdaq/picoGUI/test'
+make[2]: Saindo do diretório `/usr/lib/drdaq/picoGUI/test'
+drdaq picoMgr <install> done
+Qui Fev 16 19:37:14 BRST 2012
+make[1]: Saindo do diretório `/usr/lib/drdaq/picoGUI'
+make[1]: Entrando no diretório `/usr/lib/drdaq/bin'
+cp ../testing/testj004a/scripts/runtest drdaq
+make[1]: Saindo do diretório `/usr/lib/drdaq/bin'
+make[1]: Entrando no diretório `/usr/lib/drdaq/nameServer'
+drdaq nameServer build <install> starting
+Qui Fev 16 19:37:14 BRST 2012
+make[2]: Entrando no diretório `/usr/lib/drdaq/nameServer/src'
+nameServer/src build starting
+cp ../bin/freeName ../../bin/freeName
+cp ../bin/requestName ../../bin/requestName
+cp ../bin/nameServer ../../bin/nameServer
+nameServer/src install
+make[2]: Saindo do diretório `/usr/lib/drdaq/nameServer/src'
+make[2]: Entrando no diretório `/usr/lib/drdaq/nameServer/test'
+============== nameServer/test starting ================
+make[3]: Entrando no diretório `/usr/lib/drdaq/nameServer/test'
+============== nameServer/test <install> done ================
+make[3]: Saindo do diretório `/usr/lib/drdaq/nameServer/test'
+make[2]: Saindo do diretório `/usr/lib/drdaq/nameServer/test'
+drdaq nameServer <install> done
+Qui Fev 16 19:37:14 BRST 2012
+make[1]: Saindo do diretório `/usr/lib/drdaq/nameServer'
+make[1]: Entrando no diretório `/usr/lib/drdaq/graceUtils'
+drdaq graceUtils build <install> starting
+Qui Fev 16 19:37:14 BRST 2012
+make[2]: Entrando no diretório `/usr/lib/drdaq/graceUtils/src'
+cp libgrace.so.0 ../lib/libgrace.so.0
+cp libgrace.so.0 ../../lib/libgrace.so.0
+copied libgrace.so.0
+make[2]: Saindo do diretório `/usr/lib/drdaq/graceUtils/src'
+drdaq graceUtils <install> done
+Qui Fev 16 19:37:14 BRST 2012
+make[1]: Saindo do diretório `/usr/lib/drdaq/graceUtils'
+make[1]: Entrando no diretório `/usr/lib/drdaq/phidgetMgr'
+drdaq picoMgr build <install> starting
+Qui Fev 16 19:37:14 BRST 2012
+make[2]: Entrando no diretório `/usr/lib/drdaq/phidgetMgr/src'
+picoMgr/src build starting
+cp ../bin/picoMgr ../../bin/picoMgr
+picoMgr/src install
+make[2]: Saindo do diretório `/usr/lib/drdaq/phidgetMgr/src'
+make[2]: Entrando no diretório `/usr/lib/drdaq/phidgetMgr/test'
+============== picoMgr/test starting ================
+make[3]: Entrando no diretório `/usr/lib/drdaq/phidgetMgr/test'
+============== picoMgr/test <install> done ================
+make[3]: Saindo do diretório `/usr/lib/drdaq/phidgetMgr/test'
+make[2]: Saindo do diretório `/usr/lib/drdaq/phidgetMgr/test'
+drdaq picoMgr <install> done
+Qui Fev 16 19:37:14 BRST 2012
+make[1]: Saindo do diretório `/usr/lib/drdaq/phidgetMgr'
+DrDAQ TOP LEVEL install done
+Qui Fev 16 19:37:14 BRST 2012

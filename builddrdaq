@@ -1,0 +1,9 @@
+#!/bin/bash
+
+export SIMPL_HOME=/usr/lib/simpl
+export DRDAQ_HOME=/usr/lib/drdaq
+
+cd $DRDAQ_HOME
+
+make > $DRDAQ_HOME/make.out  2>&1
+make install >> $DRDAQ_HOME/make.out 2>&1

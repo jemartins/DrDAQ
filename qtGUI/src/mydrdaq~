@@ -1,0 +1,111 @@
+#!/bin/bash
+
+#############################
+#$Log: mydrdaq,v $
+#Revision 1.1  2013/01/14 00:13:31  diogenes-silva
+#Adicionado um script para a execução do programa.
+#
+#Revision 1.9  2006/08/25 12:06:17  jemartins
+#removed version vars
+#
+#Revision 1.8  2006/08/25 12:04:48  jemartins
+#changed simpl version var
+#
+#Revision 1.7  2006/08/03 21:33:16  jemartins
+#*** empty log message ***
+#
+#Revision 1.6  2006/08/03 15:58:19  jemartins
+#*** empty log message ***
+#
+#Revision 1.5  2006/07/12 17:06:45  jemartins
+#added export
+#
+#Revision 1.4  2006/07/11 12:34:33  jemartins
+#removed syntax error
+#
+#Revision 1.3  2006/07/11 12:25:47  jemartins
+#added commnetary
+#
+#Revision 1.2  2006/07/10 20:44:20  jemartins
+#changed paths
+#
+#Revision 1.1  2006/07/09 23:36:36  jemartins
+#*** empty log message ***
+#
+#
+###################################
+
+DESC="DrDAQ Application project"
+
+if [ ! -d $HOME/.drdaq ]; then
+	mkdir $HOME/.drdaq
+	mkdir $HOME/.drdaq/fifo
+fi
+
+# set this two vars to your drdaq and simpl installation tree
+export DRDAQ_HOME=/usr/lib/drdaq
+export SIMPL_HOME=/usr/lib/simpl
+
+# set this variable to the directory where main.py resides
+# it can also be passed as an argument to this script
+export GUI_DIR=/home/tecs/diogenes/drdaq/qtGUI/src/
+
+if [ -n "$1" ]; then
+    export GUI_DIR="$1"
+fi
+
+
+# If the python module of SIMPL is in a different path, change it here.
+export PYTHONPATH=$PYTHONPATH:$DRDAQ_HOME/python/modules
+
+WORK_DIR=$HOME/.drdaq
+export FIFO_PATH=$WORK_DIR/fifo
+mkdir -p ~/tmp
+OUTFILE=$WORK_DIR/drdaq.log
+
+#
+# bulk of script goes here
+# 
+
+echo "==============================" > $OUTFILE
+echo $DESC >>  $OUTFILE
+date >> $OUTFILE
+echo "==============================" >> $OUTFILE
+echo "" >> $OUTFILE
+
+# kill old DrDAQ processes that were casually left behind
+# in a previous run
+$SIMPL_HOME/bin/fcslay PICOGUI
+$SIMPL_HOME/bin/fcslay READER
+$SIMPL_HOME/bin/fcslay PICOMGR
+$SIMPL_HOME/bin/fcslay LOGGER
+killall xmgrace
+
+cd $SIMPL_HOME/bin
+./fclogger -n LOGGER >> $OUTFILE &
+
+cd $DRDAQ_HOME/bin
+./picoMgr \
+	-n PICOMGR\
+	-l LOGGER &
+
+cd $DRDAQ_HOME/bin
+./picoReader.tcl \
+	-N READER \
+	-g PICOGUI \
+	-p PICOMGR \
+	-l LOGGER &
+
+cd "$GUI_DIR"
+./main.py --name=PICOGUI
+
+$SIMPL_HOME/bin/fcslay PICOGUI
+$SIMPL_HOME/bin/fcslay READER
+$SIMPL_HOME/bin/fcslay PICOMGR
+$SIMPL_HOME/bin/fcslay LOGGER
+
+# Matar tudo
+for i in $(ps aux | grep pico |  awk '{ print $2 }'); do kill -9 "$i"; done
+
+cd $FIFO_PATH
+rm -f *

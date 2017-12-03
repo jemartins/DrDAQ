@@ -1,0 +1,39 @@
+=c====================================================================
+b009: build a nameServer to issue SIMPL names in the many to one case
+Owner:  whoever
+LCE:  log cabin estimate
+Multiplier: multiplex efficiency factor (assigned by project manager)
+Priority: 
+Started:
+Completed:
+======================
+$Log: taskb009,v $
+Revision 1.2  2007/05/28 22:11:07  jemartins
+close task
+
+Revision 1.1  2006/07/06 14:29:59  bobfcsoft
+new
+
+======================
+
+DESCRIPTION OF WORK:
+
+In the case where many students are sharing a single picoMgr-DrDAQ 
+system,  it would be nice to have a way to insure that SIMPL names
+and IDs don't collide.
+
+This task will focus on building a nameServer (SIMPL receiver) and
+a requestName/freeName (SIMPL senders) scheme for interfacing such
+a name location service with the picoGUI/picoReader startup scripts.
+
+---------------
+
+PREREQUISITES:
+any prerequisites go here
+
+---------------
+
+VALIDATION TESTING:
+n/a
+
+============================================

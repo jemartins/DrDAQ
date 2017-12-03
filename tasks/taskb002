@@ -1,0 +1,41 @@
+=c==========================================
+b002: add stop button to picoGUI framework
+Owner:  whoever
+LCE:  log cabin estimate
+Multiplier: multiplex efficiency factor (assigned by project manager)
+Priority: 
+Started:
+Completed: 06Apr26
+======================
+$Log: taskb002,v $
+Revision 1.3  2007/05/28 22:11:07  jemartins
+close task
+
+Revision 1.2  2006/04/26 21:39:01  bobfcsoft
+tasks completed
+
+Revision 1.1  2006/03/23 22:36:10  bobfcsoft
+task b002 created
+
+======================
+
+DESCRIPTION OF WORK:
+The picoGUI is still just a framework.
+
+It currently only sports a Start button which has been plumbed to issue
+a PICO_READING_START message.
+
+The real GUI will sport a Stop button to suspend the readings in the 
+picoReader.
+
+---------------
+
+PREREQUISITES:
+any prerequisites go here
+
+---------------
+
+VALIDATION TESTING:
+The unit test is b001
+
+============================================

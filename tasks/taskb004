@@ -1,0 +1,72 @@
+=c================================================
+b004: merge Grace interface code into picoReader
+Owner:  whoever
+LCE:  log cabin estimate
+Multiplier: multiplex efficiency factor (assigned by project manager)
+Priority: 
+Started:
+Completed:
+======================
+$Log: taskb004,v $
+Revision 1.2  2006/05/12 14:01:13  bobfcsoft
+changes
+
+Revision 1.1  2006/04/26 21:45:18  bobfcsoft
+new task
+
+======================
+
+DESCRIPTION OF WORK:
+The previous incarnation of this project lives as a Tcl/Tk 
+module at:
+	
+	$DRDAQ_HOME/src/drdaq.tcl
+
+This code contains the following procedures:
+
+proc ::vTcl:font:add_font {font_descr font_type {newkey {}}} {
+proc ::vTcl:font:getFontFromDescr {font_descr} {
+proc ::Window {args} {
+proc ::vTcl:DefineAlias {target alias widgetProc top_or_alias cmdalias} {
+proc ::vTcl:DoCmdOption {target cmd} {
+proc ::vTcl:FireEvent {target event {params {}}} {
+proc ::vTcl:Toplevel:WidgetProc {w args} {
+proc ::vTcl:WidgetProc {w args} {
+proc ::vTcl:toplevel {args} {
+proc vTcl:project:info {} {
+proc ::main {argc argv} {
+proc ::tick {} {
+proc ::InitCron {} {
+proc ::showMessageBox {w erro} {
+proc ::ValidarEntradas {} {
+proc ::ColetaDados {} {
+proc ::Cron {} {
+proc ::QualSensor {} {
+proc ::Contador {} {
+proc ::Legendas {} {
+proc ::KillSet {} {
+proc ::SalvarArquivo {s} {
+proc ::init {argc argv} {
+proc vTclWindow. {base} {
+proc vTclWindow.drdaqgrace {base} {
+
+The procedures which deal strictly with the human interface need to
+be migrated to the picoGUI framework (task b003).
+
+Those procedures which deal with the Grace plotting program interface
+need to be migrated to the picoReader framework.
+
+Those procedures which deal with making measurements have been superceded
+by the picoMgr logic.
+
+---------------
+
+PREREQUISITES:
+any prerequisites go here
+
+---------------
+
+VALIDATION TESTING:
+The unit test is b003
+
+============================================

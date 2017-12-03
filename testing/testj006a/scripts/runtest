@@ -1,0 +1,59 @@
+#!/bin/bash
+#
+# $Log: runtest,v $
+# Revision 1.6  2006/12/22 00:28:41  jemartins
+# *** empty log message ***
+#
+# Revision 1.5  2006/12/22 00:14:40  jemartins
+# added picoMgr
+#
+# Revision 1.4  2006/12/22 00:10:19  jemartins
+# new unit test
+# 
+#
+
+TEST_NO=j006a
+TEST_DESC="simpl surrogate test - nameserver"
+
+TEST_DIR=$TEST_HOME/testing/test$TEST_NO
+OUTFILE=$TEST_DIR/results/test.out
+
+#SERVERHOST=heron.fis.unb.br
+
+echo "Starting up test #$TEST_NO" | tee $OUTFILE
+echo $TEST_DESC | tee -a $OUTFILE
+#cksum $DRDAQ_HOME/picoGUI/bin/picoGUI.tcl  |  tee -a   $OUTFILE
+date | tee -a $OUTFILE
+
+#
+# bulk of test script goes here
+# 
+
+cd $SIMPL_HOME/bin
+
+./protocolRouter &
+./surrogateTcp &
+./fclogger -n LOGGER > $TEST_DIR/results/junk &
+
+cd $DRDAQ_HOME/picoMgr/bin
+./picoMgr \
+        -n PICOMGR\
+        -l LOGGER &
+
+cd $DRDAQ_HOME/nameServer/bin
+./nameServer \
+        -n NAMESERVER \
+	-g PICOGUI \
+	-r PICOREADER \
+        -l LOGGER 
+
+echo stopping stimulator unit test
+
+$SIMPL_HOME/bin/fcslay NAMESERVER
+$SIMPL_HOME/bin/fcslay PICOMGR	
+$SIMPL_HOME/bin/fcslay LOGGER
+killall surrogateTcp
+killall protocolRouter
+
+echo "Test finished you can run posttest $TEST_NO for result"
+

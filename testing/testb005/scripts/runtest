@@ -1,0 +1,39 @@
+#!/bin/bash
+#
+#$Log: runtest,v $
+#Revision 1.2  2006/07/07 19:53:23  bobfcsoft
+#bobs changes
+#
+#Revision 1.1  2006/07/06 14:30:29  bobfcsoft
+#new test
+#
+#
+
+TEST_NO=b005
+TEST_DESC="nameServer unit test"
+
+TEST_DIR=$TEST_HOME/testing/test$TEST_NO
+OUTFILE=$TEST_DIR/results/test.out
+
+echo "Starting up test #$TEST_NO" | tee $OUTFILE
+echo $TEST_DESC | tee -a $OUTFILE
+date | tee -a $OUTFILE
+
+#
+# bulk of test script goes here
+# 
+
+cd $SIMPL_HOME/bin
+./fclogger -n LOGGER > $TEST_DIR/results/junk &
+
+cd $DRDAQ_HOME/nameServer/bin
+./nameServer -n NAMESERVER -g PICOGUI -r READER -l LOGGER &
+
+cd $DRDAQ_HOME/nameServer/bin
+./nameStim -n STIM -s NAMESERVER -l LOGGER
+
+echo stopping stimulator unit test
+$SIMPL_HOME/bin/fcslay NAMESERVER
+$SIMPL_HOME/bin/fcslay LOGGER
+
+echo "Test finished you can run posttest $TEST_NO for result"

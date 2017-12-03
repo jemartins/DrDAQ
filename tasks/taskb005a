@@ -1,0 +1,37 @@
+=c================================================
+b005a: use the time stamp in picoReader
+Owner:  whoever
+LCE:  log cabin estimate
+Multiplier: multiplex efficiency factor (assigned by project manager)
+Priority: 
+Started:
+Completed:
+======================
+$Log: taskb005a,v $
+Revision 1.2  2006/05/18 14:52:43  bobfcsoft
+completed
+
+Revision 1.1  2006/05/12 14:01:13  bobfcsoft
+changes
+
+======================
+
+DESCRIPTION OF WORK:
+Many of the datasets require the elapsed time as the x axis.
+
+We need to instruct the picoReader accept the timestamp for each reading.
+
+The picoReader will be responsible for calculating the elapsed time
+associated with the x axis of the plots.
+
+---------------
+
+PREREQUISITES:
+any prerequisites go here
+
+---------------
+
+VALIDATION TESTING:
+The unit test is b003
+
+============================================

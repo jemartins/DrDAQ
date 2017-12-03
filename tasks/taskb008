@@ -1,0 +1,49 @@
+=c=====================================================================
+b008: promote the picoMgrMsgs.h to ../../include/drdaqMsgs.h
+Owner:  whoever
+LCE:  log cabin estimate
+Multiplier: multiplex efficiency factor (assigned by project manager)
+Priority: 
+Started:
+Completed:
+======================
+$Log: taskb008,v $
+Revision 1.2  2006/05/31 12:00:42  jemartins
+*** empty log message ***
+
+Revision 1.1  2006/05/25 19:06:28  bobfcsoft
+new task
+
+Revision 1.1  2006/05/13 11:39:14  bobfcsoft
+new task
+
+======================
+
+DESCRIPTION OF WORK:
+
+All the tokenized messages in this system do not arrive at the picoMgr.
+
+As such it makes sense to promote the header file we've been using for
+describing all the tokenized messages in this system up to the drdaq
+level in the tree.  ie.
+
+	$DRDAQ_HOME/include/drdaqMsgs.h
+
+
+This change will require considerable housekeeping cleanup throughout
+the code.   Makefile -I options need to include a search into the path
+above.    All instances of picoMgrMsgs.h need to change to the new
+file name.
+
+
+---------------
+
+PREREQUISITES:
+any prerequisites go here
+
+---------------
+
+VALIDATION TESTING:
+n/a
+
+============================================

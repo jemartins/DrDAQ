@@ -1,0 +1,29 @@
+#!/bin/bash
+#
+#$Log: setup,v $
+#Revision 1.1  2006/05/01 20:34:07  jemartins
+#unit test
+#
+#Revision 1.1  2006/03/08 19:18:14  bobfcsoft
+#picoGUI unit test b001
+#
+#
+#
+
+TEST_NO=b001
+TEST_DESC="picoGUI local unit test"
+
+TEST_DIR=$TEST_HOME/testing/test$TEST_NO
+DATA_DIR=$TEST_DIR/data
+
+OUTFILE=$TEST_DIR/results/test.out
+
+echo "Starting up test #$TEST_NO" | tee $OUTFILE
+echo $TEST_DESC | tee -a $OUTFILE
+date | tee -a $OUTFILE
+
+#
+# bulk of pretest script goes here
+#
+
+echo "Test $TEST_NO setup finished"

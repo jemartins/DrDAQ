@@ -1,0 +1,31 @@
+#!/bin/bash
+#
+#$Log: setup,v $
+#Revision 1.2  2008/05/09 20:04:09  jemartins
+#changed test name
+#
+#Revision 1.1  2006/04/27 12:46:52  jemartins
+#*** empty log message ***
+#
+#Revision 1.1  2006/03/24 02:14:38  bobfcsoft
+#new test
+#
+#
+
+TEST_NO=j004
+TEST_DESC="integration test"
+
+TEST_DIR=$TEST_HOME/testing/test$TEST_NO
+DATA_DIR=$TEST_DIR/data
+
+OUTFILE=$TEST_DIR/results/test.out
+
+echo "Starting up test #$TEST_NO" | tee $OUTFILE
+echo $TEST_DESC | tee -a $OUTFILE
+date | tee -a $OUTFILE
+
+#
+# bulk of pretest script goes here
+#
+
+echo "Test $TEST_NO setup finished"

@@ -1,0 +1,118 @@
+#!/bin/bash
+#
+#$Log: seetask,v $
+#Revision 1.1  2006/03/23 00:02:33  bobfcsoft
+#initial seed
+#
+#
+
+#=================================================
+# assign script variables
+#=================================================
+TASK_DIR=$DRDAQ_HOME/tasks
+
+#=================================================
+# fetch out command line parameters
+#=================================================
+NUM_ARGS=$#
+TASK_NUMBER=$1
+EDIT_MODE=$2
+
+#=================================================
+# local function definitions
+#=================================================
+#=================================================
+# function usage - entry point
+#=================================================
+function usage
+{
+echo;
+echo "================ seetask ==================";
+echo "   view description for given task";
+echo;
+echo "   seetask <task#> <options>";
+echo "   where options are:";
+echo "      i <suboption> - display index of tasks";
+echo "          where suboptions are:";
+echo "               c - completed tasks"; 
+echo "      e - edit the task file";
+echo "";
+echo "   eg.";
+echo "        seetask i";
+echo "================= done ====================";
+echo;
+}
+
+#=================================================
+# function readline2 - entry point
+#=================================================
+function readline2
+{
+read myline
+
+MYSTATUS=`echo $myline | cut -c1-2`
+
+if [ $# = 1 ]
+then
+	MYCHECK="=$1"
+else
+	MYCHECK="=="
+fi
+
+if [ $MYSTATUS = $MYCHECK ]
+then
+	read myline
+	read myline2
+	echo "$myline <$myline2>"
+fi
+}
+
+#=================================================
+# function createIndex - entry point
+#=================================================
+function createIndex
+{
+cd $TASK_DIR
+for file in `ls`
+do
+	if [ -f $file ]
+	then
+		readline2 $1 < $file
+	fi
+done
+}
+
+#=================================================
+#  seetask - entry point
+#=================================================
+if [ $NUM_ARGS = 0 ]
+then
+	usage
+else
+if [ $TASK_NUMBER = i ]
+then
+	createIndex $2		
+else
+if [ ! -f $TASK_DIR/task$TASK_NUMBER ]
+then
+	echo $TASK_DIR/task$TASK_NUMBER does not yet exist
+	echo Will create it for you
+	cp $TASK_DIR/templates/task_template $TASK_DIR/task$TASK_NUMBER
+	chmod u+w $TASK_DIR/task$TASK_NUMBER
+	sleep 2
+fi
+
+if [ $NUM_ARGS = 2 ]
+then
+	if [ $EDIT_MODE = e ]
+	then
+		vi $TASK_DIR/task$TASK_NUMBER
+	else
+		view $TASK_DIR/task$TASK_NUMBER
+	fi
+else
+	
+	view $TASK_DIR/task$TASK_NUMBER
+fi
+fi
+fi

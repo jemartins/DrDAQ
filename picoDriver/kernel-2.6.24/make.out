@@ -1,0 +1,9 @@
+make -C /lib/modules/`uname -r`/build SUBDIRS=/home/jemartins/Projects/picopar/kernel-2.6.24.4 modules
+make[1]: Entrando no diretório `/usr/src/linux-2.6.24.4-desktop-1mnb'
+  CC [M]  /home/jemartins/Projects/picopar/kernel-2.6.24.4/picolnx.o
+/home/jemartins/Projects/picopar/kernel-2.6.24.4/picolnx.c: In function ‘pico_exit’:
+/home/jemartins/Projects/picopar/kernel-2.6.24.4/picolnx.c:1600: error: void value not ignored as it ought to be
+make[2]: ** [/home/jemartins/Projects/picopar/kernel-2.6.24.4/picolnx.o] Erro 1
+make[1]: ** [_module_/home/jemartins/Projects/picopar/kernel-2.6.24.4] Erro 2
+make[1]: Saindo do diretório `/usr/src/linux-2.6.24.4-desktop-1mnb'
+make: ** [all] Erro 2

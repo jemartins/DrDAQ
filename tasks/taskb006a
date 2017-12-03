@@ -1,0 +1,34 @@
+=c=====================================================================
+b006a:  more DrDAQ sensor modes in picoReader
+Owner:  whoever
+LCE:  log cabin estimate
+Multiplier: multiplex efficiency factor (assigned by project manager)
+Priority: 
+Started:
+Completed:
+======================
+$Log: taskb006a,v $
+Revision 1.2  2006/05/31 12:00:42  jemartins
+*** empty log message ***
+
+Revision 1.1  2006/05/12 14:01:13  bobfcsoft
+changes
+
+======================
+
+DESCRIPTION OF WORK:
+Once the new message structure has been implemented in 
+the picoMgr (task b006) these new messages need to be
+propogated to the picoReader.
+
+---------------
+
+PREREQUISITES:
+any prerequisites go here
+
+---------------
+
+VALIDATION TESTING:
+The unit test is b003
+
+============================================

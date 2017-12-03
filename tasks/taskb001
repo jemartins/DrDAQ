@@ -1,0 +1,37 @@
+=c===========================================
+b001: add the temperature measurement function to picoMgr
+Owner:  whoever
+LCE:  log cabin estimate
+Multiplier: multiplex efficiency factor (assigned by project manager)
+Priority: 
+Started:
+Completed:  06Apr26
+======================
+$Log: taskb001,v $
+Revision 1.2  2006/04/26 21:39:01  bobfcsoft
+tasks completed
+
+Revision 1.1  2006/03/23 00:03:35  bobfcsoft
+changes
+
+======================
+
+DESCRIPTION OF WORK:
+The picoMgr has the PICO_TEMPERATURE tokenized messaging framework
+in place.
+
+What is required is a function inside picoMgrUtils.c which does the
+required ioctl() calls to the DrDAQ driver so that an actual temperature
+is read.
+
+---------------
+
+PREREQUISITES:
+any prerequisites go here
+
+---------------
+
+VALIDATION TESTING:
+The unit test is b002
+
+============================================

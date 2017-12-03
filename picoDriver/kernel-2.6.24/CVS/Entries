@@ -1,0 +1,20 @@
+/Makefile/1.2/Mon Jul  5 18:00:16 2010//
+/README.TXT/1.1/Fri May  9 19:52:08 2008//
+/conduct.h/1.1/Fri May  9 19:52:08 2008//
+/drdaqdrv.h/1.1/Fri May  9 19:52:08 2008//
+/drdaqscl.c/1.1/Fri May  9 19:52:08 2008//
+/humidity.h/1.1/Fri May  9 19:52:08 2008//
+/light.h/1.1/Fri May  9 19:52:08 2008//
+/lightint.h/1.1/Fri May  9 19:52:08 2008//
+/make.out/1.1/Fri May  9 19:52:09 2008//
+/oxygen.h/1.1/Fri May  9 19:52:09 2008//
+/pico_lnx.h/1.1/Fri May  9 19:52:09 2008//
+/picolnx.c/1.1/Fri May  9 19:52:09 2008//
+/reed.h/1.1/Fri May  9 19:52:09 2008//
+/resint.h/1.1/Fri May  9 19:52:09 2008//
+/sndintw.h/1.1/Fri May  9 19:52:09 2008//
+/soundl.h/1.1/Fri May  9 19:52:09 2008//
+/tempc.h/1.1/Fri May  9 19:52:09 2008//
+/tempintc.h/1.1/Fri May  9 19:52:09 2008//
+/voltsint.h/1.1/Fri May  9 19:52:09 2008//
+D

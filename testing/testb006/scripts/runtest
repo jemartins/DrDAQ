@@ -1,0 +1,88 @@
+#!/bin/bash
+#
+#$Log: runtest,v $
+#Revision 1.3  2006/07/08 11:42:14  bobfcsoft
+#added loop
+#
+#Revision 1.2  2006/07/07 21:54:07  jemartins
+#added requestName and freeName
+#
+#Revision 1.1  2006/07/06 14:29:18  bobfcsoft
+#new test
+#
+#
+
+TEST_NO=b006
+TEST_DESC="nameServer script test"
+
+TEST_DIR=$TEST_HOME/testing/test$TEST_NO
+OUTFILE=$TEST_DIR/results/test.out
+
+echo "Starting up test #$TEST_NO" | tee $OUTFILE
+echo $TEST_DESC | tee -a $OUTFILE
+date | tee -a $OUTFILE
+
+#
+# bulk of test script goes here
+# 
+
+cd $SIMPL_HOME/bin
+./fclogger -n LOGGER > $TEST_DIR/results/junk &
+
+cd $DRDAQ_HOME/nameServer/bin
+./nameServer -n NAMESERVER -l LOGGER -g PICOGUI -r READER&
+
+x_it=0
+while [ $x_it = 0 ]
+do
+echo ""
+echo "Select option:"
+echo "   r - request a name"
+echo "   f - free a name"
+echo "   q - quit"
+echo ""
+
+echo -n "-> "
+read ans
+echo ""
+
+if [ $ans = "r" ]
+then
+	cd $DRDAQ_HOME/nameServer/bin
+	MYSTR=`./requestName -n REQUEST -s NAMESERVER`
+
+	GUI_NAME=`echo $MYSTR | cut -f 1 -d ,`
+	READER_NAME=`echo $MYSTR | cut -f 2 -d ,`
+	MY_ID=`echo $MYSTR | cut -f 3 -d ,`
+
+	echo "GUI_NAME=$GUI_NAME"
+        echo "READER_NAME=$READER_NAME"
+        echo "MY_ID=$MY_ID"
+
+			
+else
+if [ $ans = "f" ]
+then
+	echo -n "Which ID do you want to free? "
+	read myID
+	echo ""
+
+	cd $DRDAQ_HOME/nameServer/bin
+	MYSTR=`./freeName -n FREE -s NAMESERVER -I $myID`
+	
+	echo "freeing ID=$myID"
+else
+if [ $ans = "q" ]
+then
+	x_it=1
+fi
+fi
+fi
+done
+
+echo ""
+echo stopping stimulator unit test
+$SIMPL_HOME/bin/fcslay NAMESERVER
+$SIMPL_HOME/bin/fcslay LOGGER
+
+echo "Test finished you can run posttest $TEST_NO for result"

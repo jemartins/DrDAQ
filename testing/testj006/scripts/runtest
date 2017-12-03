@@ -1,0 +1,103 @@
+#!/bin/bash
+#
+#$Log: runtest,v $
+#Revision 1.7  2012/10/11 23:49:23  jemartins
+#killing process
+#
+#Revision 1.6  2006/08/04 03:03:03  jemartins
+#*** empty log message ***
+#
+#Revision 1.5  2006/07/09 21:01:26  jemartins
+#*** empty log message ***
+#
+#Revision 1.4  2006/06/26 11:58:21  jemartins
+#*** empty log message ***
+#
+#Revision 1.3  2006/06/25 22:24:56  jemartins
+#added for
+#
+#Revision 1.2  2006/06/25 15:04:56  jemartins
+#*** empty log message ***
+#
+#Revision 1.1  2006/06/15 14:05:53  jemartins
+#new test
+#
+#
+#
+
+TEST_NO=j006
+TEST_DESC="simpl surrogate test "
+
+TEST_DIR=$TEST_HOME/testing/test$TEST_NO
+OUTFILE=$TEST_DIR/results/test.out
+
+#SERVERHOST=gaia.fis.unb.br
+SERVERHOST=gaia.fis.unb.br
+
+echo "Starting up test #$TEST_NO" | tee $OUTFILE
+echo $TEST_DESC | tee -a $OUTFILE
+#cksum $DRDAQ_HOME/picoGUI/bin/picoGUI.tcl  |  tee -a   $OUTFILE
+date | tee -a $OUTFILE
+
+#
+# bulk of test script goes here
+# 
+
+cd $SIMPL_HOME/bin
+
+./protocolRouter &
+./surrogateTcp &
+./fclogger -n LOGGER > $TEST_DIR/results/junk &
+
+cd $DRDAQ_HOME/nameServer/bin
+MYSTR=`./requestName -n REQUEST -s $SERVERHOST:NAMESERVER -l LOGGER`
+
+GUI_NAME=`echo $MYSTR | cut -f 1 -d ,`
+READER_NAME=`echo $MYSTR | cut -f 2 -d ,`
+MY_ID=`echo $MYSTR | cut -f 3 -d ,`
+
+echo "GUI_NAME=$GUI_NAME READER_NAME=$READER_NAME MY_ID=$MY_ID"
+
+cd $DRDAQ_HOME/picoReader/bin
+./picoReader.tcl \
+        -N $READER_NAME \
+        -g $GUI_NAME \
+        -p $SERVERHOST:PICOMGR \
+        -I $MY_ID \
+        -l LOGGER &
+
+cd $DRDAQ_HOME/picoGUI/bin
+./picoGUI.tcl \
+        -N $GUI_NAME \
+        -f $SIMPL_HOME/fifo \
+        -p $SERVERHOST:PICOMGR \
+        -I $MY_ID \
+        -l LOGGER 
+
+echo "freeing ID=$MY_ID"
+    
+cd $DRDAQ_HOME/nameServer/bin
+./freeName -n FREE -s $SERVERHOST:NAMESERVER -l LOGGER -I $MY_ID
+
+echo stopping stimulator unit test
+
+$SIMPL_HOME/bin/fcslay $READER_NAME
+$SIMPL_HOME/bin/fcslay $GUI_NAME
+
+$SIMPL_HOME/bin/fcslay LOGGER
+
+process=$(ps ax | grep surrogateTcp | awk '{print $1}')
+for i in $process; do
+
+        kill -9 $i
+
+done
+
+process=$(ps ax | grep protocolRouter | awk '{print $1}')
+for i in $process; do
+
+	       kill -9 $i
+			                     
+done
+echo "Test finished you can run posttest $TEST_NO for result"
+

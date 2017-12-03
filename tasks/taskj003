@@ -1,0 +1,36 @@
+=================================================
+j003: improve "oscilloscope" function
+Owner:  whoever
+LCE:  log cabin estimate
+Multiplier: multiplex efficiency factor (assigned by project manager)
+Priority: 
+Started:
+Completed:
+======================
+$Log: taskj003,v $
+Revision 1.1  2006/06/09 18:13:47  jemartins
+task j003 created
+
+======================
+
+DESCRIPTION OF WORK:
+
+The PicoScope software makes the computer into a storage oscilloscope with 
+
+    (i) a timebase range from 1 ms/div to 50 s/div,
+    (ii) the capacity to display four different channels of data at the same time,
+    (iii) triggering facilities,
+    (iv) X and Y gain controls and (v) useful rulers to measure amplitude and time.
+
+We need to construct one program that have the some functions than picoScope.
+
+---------------
+
+PREREQUISITES:
+any prerequisites go here
+
+---------------
+
+VALIDATION TESTING:
+
+============================================

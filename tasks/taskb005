@@ -1,0 +1,37 @@
+=c================================================
+b005: add time stamp to TEMPERATURE message
+Owner:  whoever
+LCE:  log cabin estimate
+Multiplier: multiplex efficiency factor (assigned by project manager)
+Priority: 
+Started:
+Completed:
+======================
+$Log: taskb005,v $
+Revision 1.2  2006/05/31 12:00:42  jemartins
+*** empty log message ***
+
+Revision 1.1  2006/05/05 23:39:08  bobfcsoft
+new tasks
+
+======================
+
+DESCRIPTION OF WORK:
+Many of the datasets require the elapsed time as the x axis.
+
+We need to instruct the picoMgr to timestamp each reading.
+
+Initially a resolution of 1 sec is sufficient.   Ultimately,
+a subsecond resolution will be required.
+
+---------------
+
+PREREQUISITES:
+any prerequisites go here
+
+---------------
+
+VALIDATION TESTING:
+The unit test is b002
+
+============================================

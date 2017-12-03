@@ -1,0 +1,19 @@
+fclogger starting
+(reader) main:loggerID=7
+(reader) main:myName=<READER> myslot=READER.14020
+(reader) main:loggerName=<LOGGER> loggerID=7
+(reader) main:logMask=FF
+[picoMgrI:initialize  ] 114707.558 executable: <./picoMgr> cksum=900924497
+[picoMgrI:initialize  ] 114707.558 SIMPL name: <PICOMGR> slot=0
+[picoMgrI:initialize  ] 114707.558 trace logger mask = 0x00FF
+[picoMgrU:turnLedOff  ] 114707.558 ding
+[picoMgrU:drdaq_open  ] 114707.559 open device
+[picoMgrI:initialize  ] 114707.559 Kernel driver version 0300
+(picoGUI) main:myName=<PICOGUI> myslot=PICOGUI.14021
+(picoGUI) main:loggerName=<LOGGER> id=8
+(picoGUI) main:logMask=FF
+(picoGUI) main:myFifo=</home/profs/jemartins/Projects/simpl/fifo/PICOGUI.14021
+(reader) mainLoop:ding
+(reader) mainLoop:picoMgr name=PICOMGR
+(reader) mainLoop:picoGui name=PICOGUI
+[picoMgr.:picoMgr     ] 114709.561 WHAT_YA_GOT myID=10

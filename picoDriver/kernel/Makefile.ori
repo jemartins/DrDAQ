@@ -1,0 +1,14 @@
+# NB this cannot be run directly from the kernel directory - it needs
+# arguments set by ../Makefile
+
+all : kernel
+.PHONY : all
+
+kernel:
+obj-m += picopar.o
+picopar-objs :=  picolnx.o drdaqscl.o
+
+clean:
+	rm -f *.o *.ko picopar.mod.c .*.cmd
+	chmod 644 *
+.PHONY : clean

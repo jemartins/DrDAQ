@@ -1,0 +1,19 @@
+token: START
+Tmax: 20.1
+period: 2000 msec
+maxReadings: 10
+nsensors: 2
+Sensor1: 1
+Sensor2: 1
+sensor(n_modo,1): 8
+sensor(set_value,1): 5
+sensor(n_modo,2): 8
+sensor(set_value,2): 5
+Passo: 1
+AutoEscala: 1
+xmax: 50.3
+ymax: 1000
+Maior_divx: 10.0
+Menor_divx: 1
+Maior_divy: 100
+Menor_divy: 10

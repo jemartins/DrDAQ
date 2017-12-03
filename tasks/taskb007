@@ -1,0 +1,55 @@
+=c=====================================================================
+b007: insure correct header block on all code
+Owner:  whoever
+LCE:  log cabin estimate
+Multiplier: multiplex efficiency factor (assigned by project manager)
+Priority: 
+Started:
+Completed:
+======================
+$Log: taskb007,v $
+Revision 1.2  2006/05/31 12:00:42  jemartins
+*** empty log message ***
+
+Revision 1.1  2006/05/13 11:39:14  bobfcsoft
+new task
+
+======================
+
+DESCRIPTION OF WORK:
+
+The C, Tcl/Tk and Makefiles in this project which do not have an 
+LGPL licence block should contain the following in the comment block.  
+
+--------------------------
+    Copyright (C) 2006 DrDAQ Application Project. 
+
+    This software is in the public domain.
+    Permission to use, copy, modify, and distribute this software and its
+    documentation for any purpose and without fee is hereby granted, 
+    without any conditions or restrictions.
+    This software is provided "as is" without express or implied warranty.
+
+    If you discover a bug or add an enhancement here's how to reach us: 
+
+	https://sourceforge.net/projects/drdaq
+
+-------------------------
+
+If we create a library at some point we may want that code to be LGPL'd.
+
+The code which came from the iCanProgram course can have the comment block
+switched to the above,  because iCanProgram donated this code to seed
+the DrDAQ project.
+
+---------------
+
+PREREQUISITES:
+any prerequisites go here
+
+---------------
+
+VALIDATION TESTING:
+n/a
+
+============================================

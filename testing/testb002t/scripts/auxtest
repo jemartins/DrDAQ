@@ -1,0 +1,25 @@
+#!/bin/bash
+#
+#$Log: auxtest,v $
+#Revision 1.1  2006/03/21 20:43:05  bobfcsoft
+#b002t guiStim.tcl
+#
+#
+
+TEST_NO=b002t
+TEST_DESC="picoMgr local unit test"
+
+TEST_DIR=$TEST_HOME/testing/test$TEST_NO
+OUTFILE=$TEST_DIR/results/test.out
+
+
+cd $DRDAQ_HOME/picoMgr-2.4/test
+./guiStim.tcl \
+	-N GUISTIM \
+	-p PICO\
+	-l LOGGER
+
+echo stopping stimulator unit test
+$SIMPL_HOME/bin/fcslay GUISTIM
+
+echo "Test finished you can run posttest $TEST_NO for result"

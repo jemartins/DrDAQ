@@ -1,0 +1,41 @@
+============================================
+m001: whateverthedescriptionis
+Owner:  whoever
+LCE:  log cabin estimate
+Multiplier: multiplex efficiency factor (assigned by project manager)
+Priority: 
+Started:
+Completed:
+======================
+$Log: taskm001,v $
+Revision 1.1  2007/05/22 20:18:29  juniocruz
+New task
+
+
+======================
+DESCRIPTION OF WORK:
+
+In the pendulum experiment the
+interface must read the oscilation angle. For this purpose the pendulum is
+attached to an axis that rotates a couple of magnets around a hall effect 
+sensor, providing a voltage which is proportional to the sin of the oscilation 
+angle. The student has to set the pendulum in the vertical position and at 
+a fixed angle to provide two calibration points in order to convert the 
+voltage readings into degrees of oscilation. 
+What has to be done:
+a- modify the GUI to include an option for the pendulum sensor, to colect
+two calibration parameters and to pass them on to PicoReader.
+b- PicoReader must pass the calibration parameters to PicoMgr.
+c- A function readAngle must be constructed in PicoMgr to convert voltage readings into angle.
+-------------
+
+PREREQUISITES:
+any prerequisites go here
+
+---------------
+
+VALIDATION TESTING:
+test number for validation test goes here and/or a short
+description of what the test does
+
+============================================
