@@ -41,6 +41,30 @@
 #
 ##########################################################################
 
+proc string2hex s {
+    binary scan $s H* hex
+    regsub -all (..) $hex {\\x\1}
+} ;# RS
+
+#proc string2hex {string} {
+#    set where 0
+#    set res {}
+#    while {$where<[string length $string]} {
+#        set str [string range $string $where [expr $where+15]]
+#        if {![binary scan $str H* t] || $t==""} break
+#        regsub -all (....) $t {\1 } t4
+#        regsub -all (..) $t {\1 } t2
+#        set asc ""
+#        foreach i $t2 {
+#            scan $i %2x c
+#            append asc [expr {$c>=32 && $c<=127? [format %c $c]: "."}]
+#        }
+#        lappend res [format "%7.7x: %-42s %s" $where $t4  $asc]
+#        incr where 16
+#    }
+#    join $res \n
+#}
+
 #=======================================
 # processTemperature - entry point
 #=======================================
@@ -56,8 +80,19 @@ global logMask
 
 global Passo AutoEscala elapsed 
 
+set DumpHex [string2hex $inMsg]
+logit $loggerID $this $fn $MASK_MISC $logMask \
+	"DumpHex $DumpHex"
 
-binary scan $inMsg i1i1i1i1i1 rtoken myID tv_sec tc_usec myTemperature
+# 32bit:
+#binary scan $inMsg i1i1i1i1i1 rtoken myID tv_sec tc_usec myTemperature
+# 64bit:
+binary scan $inMsg i1i1w1w1i1 rtoken myID tv_sec tc_usec myTemperature
+
+logit $loggerID $this $fn $MASK_MISC $logMask \
+	[format "rtoken=%d myID = %d" \
+	[expr $rtoken ] \
+	[expr $myID ] ]
 
 logit $loggerID $this $fn $MASK_MISC $logMask \
 	[format "temperature = %d.%d C" \

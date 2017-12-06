@@ -531,7 +531,7 @@ for {set  i  1}  { $x_it  != 1 }  { incr i } {
 		
 		binary scan $rMsg i1i1a* slot rBytes restofMsg
 		
-		binary scan $restofMsg i1i1i1i1 rtoken ID tv_sec tv_usec
+		binary scan $restofMsg i1i1w1w1 rtoken ID tv_sec tv_usec
 	
 		if { $rtoken == $PICO_TOKEN(PICO_READING_STOP) } {
 			set x_it 1

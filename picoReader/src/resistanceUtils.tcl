@@ -62,7 +62,10 @@ global logMask
 
 global Passo AutoEscala elapsed 
 
-binary scan $inMsg i1i1i1i1i1 rtoken myID tv_sec tv_usec myResistance
+# 32bit:
+#binary scan $inMsg i1i1i1i1i1 rtoken myID tv_sec tv_usec myResistance
+# 64bit:
+binary scan $inMsg i1i1w1w1i1 rtoken myID tv_sec tv_usec myResistance
 
 logit $loggerID $this $fn $MASK_MISC $logMask \
 	[format "resistance = %d ADC" $myResistance]

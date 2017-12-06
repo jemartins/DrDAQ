@@ -62,7 +62,11 @@ global logMask
 
 global Passo AutoEscala elapsed 
 
-binary scan $inMsg i1i1i1i1i1 rtoken myID tv_sec tv_usec myWaveForm
+# 32bit:
+#binary scan $inMsg i1i1i1i1i1 rtoken myID tv_sec tv_usec myWaveForm
+# 64bit:
+binary scan $inMsg i1i1w1w1i1 rtoken myID tv_sec tv_usec myWaveForm
+
 set myWave $myWaveForm
 
 logit $loggerID $this $fn $MASK_MISC $logMask \

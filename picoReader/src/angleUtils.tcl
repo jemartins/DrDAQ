@@ -50,7 +50,10 @@ global logMask
 
 global Passo AutoEscala elapsed 
 
-binary scan $inMsg i1i1i1i1f1 rtoken myID tv_sec tv_usec myAngle
+# 32bit:
+#binary scan $inMsg i1i1i1i1f1 rtoken myID tv_sec tv_usec myAngle
+# 64bit:
+binary scan $inMsg i1i1w1w1f1 rtoken myID tv_sec tv_usec myAngle
 
 logit $loggerID $this $fn $MASK_MISC $logMask \
 	[format "Angle = %f degree" $myAngle ]

@@ -642,6 +642,56 @@ while(1)
 			now = localtime((time_t *)&tv_now.tv_sec);  // only needed for log below
 	
 			fcLogx(__FILE__, fn,
+                               globalMask,
+                               PICOMGR_MISC,
+                               "sizeof(PICO_TEMPERATURE_MSG)=%d sizeof(struct timeval)=%d tv_now.tv_sec=%d tv_now.tv_usec=%d mytemp=%d)",
+                               sizeof(PICO_TEMPERATURE_MSG),
+			       sizeof(struct timeval),
+                               tv_now.tv_sec,
+			       tv_now.tv_usec,
+                               mytemp);
+
+			fcLogx(__FILE__, fn,
+			       globalMask,
+			       PICOMGR_MISC,
+			       "myID=%d set_value=%d",
+			       myID,
+			       myID, myvalue);
+			
+			outMsg=(PICO_TEMPERATURE_MSG *)outArea;
+			outMsg->token=PICO_TEMPERATURE;
+			outMsg->ID=myID;
+			outMsg->mystamp.tv_sec=tv_now.tv_sec;
+			outMsg->mystamp.tv_usec=tv_now.tv_usec;
+			outMsg->temperature=mytemp;;
+
+            fcLogx(__FILE__, fn,
+			       globalMask,
+			       PICOMGR_MISC,
+			       "DUMPHEX_0-7 0x%02x-%02x-%02x-%02x-%02x-%02x-%02x-%02x\n",
+			       outArea[0],
+			       outArea[1],
+			       outArea[2],
+			       outArea[3],
+			       outArea[4],
+			       outArea[5],
+			       outArea[6],
+			       outArea[7]);
+
+            fcLogx(__FILE__, fn,
+			       globalMask,
+			       PICOMGR_MISC,
+			       "DUMPHEX_8-15 0x%02x-%02x-%02x-%02x-%02x-%02x-%02x-%02x\n",
+			       outArea[8],
+			       outArea[9],
+			       outArea[10],
+			       outArea[11],
+			       outArea[12],
+			       outArea[13],
+			       outArea[14],
+			       outArea[15]);
+
+			fcLogx(__FILE__, fn,
 			       globalMask,
 			       PICOMGR_MISC,
 			       "temperature=%d.%d at %02d%02d%02d.%03d",
@@ -652,19 +702,6 @@ while(1)
 			       now->tm_sec,
 			       (int)tv_now.tv_usec /1000  // covert to msec
 			       );
-	
-			fcLogx(__FILE__, fn,
-			       globalMask,
-			       PICOMGR_MISC,
-			       "myID=%d set_value=%d",
-			       myID,
-			       myID, myvalue);
-	
-			outMsg=(PICO_TEMPERATURE_MSG *)outArea;
-			outMsg->token=PICO_TEMPERATURE;
-			outMsg->temperature=mytemp;
-			outMsg->mystamp.tv_sec=tv_now.tv_sec;
-			outMsg->mystamp.tv_usec=tv_now.tv_usec;;
 	
 			Reply(fromWhom, outArea, sizeof(PICO_TEMPERATURE_MSG));
 	
