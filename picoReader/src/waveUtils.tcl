@@ -64,6 +64,7 @@ global Passo AutoEscala elapsed
 
 # 32bit:
 #binary scan $inMsg i1i1i1i1i1 rtoken myID tv_sec tv_usec myWaveForm
+
 # 64bit:
 binary scan $inMsg i1i1w1w1i1 rtoken myID tv_sec tv_usec myWaveForm
 

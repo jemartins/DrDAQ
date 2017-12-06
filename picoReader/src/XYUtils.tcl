@@ -64,13 +64,19 @@ binary scan $inMsg i1 rtoken
 
 if { $rtoken == $PICO_TOKEN(PICO_ANGLE) } {
 
+	# 32bits
+	#binary scan $inMsg i1i1i1i1f1 rtoken myID tv_sec tv_usec myReading
+	# 64bits
 	binary scan $inMsg i1i1w1w1f1 rtoken myID tv_sec tv_usec myReading
 	logit $loggerID $this $fn $MASK_MISC $logMask \
 	[format "myReading = %f" $myReading ]
 
 	
 } else { 
-
+	
+	# 32bits
+	binary scan $inMsg i1i1i1i1i1 rtoken myID tv_sec tv_usec myReading
+	# 64bits
 	binary scan $inMsg i1i1w1w1i1 rtoken myID tv_sec tv_usec myReading
 	logit $loggerID $this $fn $MASK_MISC $logMask \
 	[format "myReading = %d" $myReading ]

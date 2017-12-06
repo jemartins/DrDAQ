@@ -52,6 +52,7 @@ global Passo AutoEscala elapsed
 
 # 32bit:
 #binary scan $inMsg i1i1i1i1f1 rtoken myID tv_sec tv_usec myAngle
+
 # 64bit:
 binary scan $inMsg i1i1w1w1f1 rtoken myID tv_sec tv_usec myAngle
 

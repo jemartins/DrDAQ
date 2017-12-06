@@ -86,6 +86,7 @@ logit $loggerID $this $fn $MASK_MISC $logMask \
 
 # 32bit:
 #binary scan $inMsg i1i1i1i1i1 rtoken myID tv_sec tc_usec myTemperature
+
 # 64bit:
 binary scan $inMsg i1i1w1w1i1 rtoken myID tv_sec tc_usec myTemperature
 
