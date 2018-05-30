@@ -1,0 +1,5 @@
+make -C /lib/modules/`uname -r`/build SUBDIRS=/home/jemartins/Projects/picopar/kernel-2.6.24 modules
+make[1]: Entrando no diretório `/usr/src/linux-2.6.29.3-desktop-1mnb'
+  Building modules, stage 2.
+  MODPOST 1 modules
+make[1]: Saindo do diretório `/usr/src/linux-2.6.29.3-desktop-1mnb'

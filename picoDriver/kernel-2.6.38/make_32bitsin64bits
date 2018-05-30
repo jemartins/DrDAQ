@@ -1,0 +1,6 @@
+#!/bin/bash
+#
+# ref.: https://gcc.gnu.org/ml/gcc-help/2011-04/msg00528.html
+#############################################################
+make BOOT_CFLAGS="-m32 -g -O2" 
+

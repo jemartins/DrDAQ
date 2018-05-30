@@ -678,7 +678,7 @@ for {set  i  1}  { $x_it  != 1 }  { incr i } {
 		
 		binary scan $rMsg i1i1a* slot rBytes restofMsg
 		
-		binary scan $restofMsg i1i1i1i1 rtoken ID tv_sec tv_usec
+		binary scan $restofMsg i1i1w1w1 rtoken ID tv_sec tv_usec
 	
 		if { $rtoken == $PICO_TOKEN(PICO_READING_STOP) } {
 			set x_it 1
@@ -1035,7 +1035,11 @@ global logMask
 
 global Passo AutoEscala elapsed 
 
-binary scan $inMsg i1i1i1i1i1 rtoken myID tv_sec tv_usec myLight
+# 32bit:
+#binary scan $inMsg i1i1i1i1i1 rtoken myID tv_sec tv_usec myLight
+
+# 64bit:
+binary scan $inMsg i1i1w1w1i1 rtoken myID tv_sec tv_usec myLight
 
 logit $loggerID $this $fn $MASK_MISC $logMask \
 	[format "Light = %d.%d" \
@@ -1138,7 +1142,11 @@ global logMask
 
 global Passo AutoEscala elapsed 
 
-binary scan $inMsg i1i1i1i1i1 rtoken myID tv_sec tv_usec myPH
+# 32bit:
+#binary scan $inMsg i1i1i1i1i1 rtoken myID tv_sec tv_usec myPH
+
+# 64bit:
+binary scan $inMsg i1i1w1w1i1 rtoken myID tv_sec tv_usec myPH
 
 logit $loggerID $this $fn $MASK_MISC $logMask \
 	[format "PH = %d ADC" $myPH ]
@@ -1242,7 +1250,10 @@ global logMask
 
 global Passo AutoEscala elapsed 
 
-binary scan $inMsg i1i1i1i1i1 rtoken myID tv_sec tv_usec myResistance
+# 32bit:
+#binary scan $inMsg i1i1i1i1i1 rtoken myID tv_sec tv_usec myResistance
+# 64bit:
+binary scan $inMsg i1i1w1w1i1 rtoken myID tv_sec tv_usec myResistance
 
 logit $loggerID $this $fn $MASK_MISC $logMask \
 	[format "resistance = %d ADC" $myResistance]
@@ -1349,7 +1360,11 @@ global logMask
 
 global Passo AutoEscala elapsed 
 
-binary scan $inMsg i1i1i1i1i1 rtoken myID tv_sec tv_usec mySoundLevel
+# 32bit:
+#binary scan $inMsg i1i1i1i1i1 rtoken myID tv_sec tv_usec mySoundLevel
+
+# 64bit:
+binary scan $inMsg i1i1w1w1i1 rtoken myID tv_sec tv_usec mySoundLevel
 
 logit $loggerID $this $fn $MASK_MISC $logMask \
 	[format "sound level = %d.%d dB" \
@@ -1431,6 +1446,30 @@ if { $Passo == "Tempo" } {
 #
 ##########################################################################
 
+proc string2hex s {
+    binary scan $s H* hex
+    regsub -all (..) $hex {\\x\1}
+} ;# RS
+
+#proc string2hex {string} {
+#    set where 0
+#    set res {}
+#    while {$where<[string length $string]} {
+#        set str [string range $string $where [expr $where+15]]
+#        if {![binary scan $str H* t] || $t==""} break
+#        regsub -all (....) $t {\1 } t4
+#        regsub -all (..) $t {\1 } t2
+#        set asc ""
+#        foreach i $t2 {
+#            scan $i %2x c
+#            append asc [expr {$c>=32 && $c<=127? [format %c $c]: "."}]
+#        }
+#        lappend res [format "%7.7x: %-42s %s" $where $t4  $asc]
+#        incr where 16
+#    }
+#    join $res \n
+#}
+
 #=======================================
 # processTemperature - entry point
 #=======================================
@@ -1446,8 +1485,20 @@ global logMask
 
 global Passo AutoEscala elapsed 
 
+set DumpHex [string2hex $inMsg]
+logit $loggerID $this $fn $MASK_MISC $logMask \
+	"DumpHex $DumpHex"
 
-binary scan $inMsg i1i1i1i1i1 rtoken myID tv_sec tc_usec myTemperature
+# 32bit:
+#binary scan $inMsg i1i1i1i1i1 rtoken myID tv_sec tc_usec myTemperature
+
+# 64bit:
+binary scan $inMsg i1i1w1w1i1 rtoken myID tv_sec tc_usec myTemperature
+
+logit $loggerID $this $fn $MASK_MISC $logMask \
+	[format "rtoken=%d myID = %d" \
+	[expr $rtoken ] \
+	[expr $myID ] ]
 
 logit $loggerID $this $fn $MASK_MISC $logMask \
 	[format "temperature = %d.%d C" \
@@ -1559,7 +1610,10 @@ global logMask
 
 global Passo AutoEscala elapsed 
 
-binary scan $inMsg i1i1i1i1i1 rtoken myID tv_sec tv_usec myVoltage
+# 32bit:
+#binary scan $inMsg i1i1i1i1i1 rtoken myID tv_sec tv_usec myVoltage
+# 64bit:
+binary scan $inMsg i1i1w1w1i1 rtoken myID tv_sec tv_usec myVoltage
 
 logit $loggerID $this $fn $MASK_MISC $logMask \
 	[format "Voltage = %d mV" $myVoltage ]
@@ -1663,7 +1717,12 @@ global logMask
 
 global Passo AutoEscala elapsed 
 
-binary scan $inMsg i1i1i1i1i1 rtoken myID tv_sec tv_usec myWaveForm
+# 32bit:
+#binary scan $inMsg i1i1i1i1i1 rtoken myID tv_sec tv_usec myWaveForm
+
+# 64bit:
+binary scan $inMsg i1i1w1w1i1 rtoken myID tv_sec tv_usec myWaveForm
+
 set myWave $myWaveForm
 
 logit $loggerID $this $fn $MASK_MISC $logMask \
@@ -1752,7 +1811,11 @@ global logMask
 
 global Passo AutoEscala elapsed 
 
-binary scan $inMsg i1i1i1i1f1 rtoken myID tv_sec tv_usec myAngle
+# 32bit:
+#binary scan $inMsg i1i1i1i1f1 rtoken myID tv_sec tv_usec myAngle
+
+# 64bit:
+binary scan $inMsg i1i1w1w1f1 rtoken myID tv_sec tv_usec myAngle
 
 logit $loggerID $this $fn $MASK_MISC $logMask \
 	[format "Angle = %f degree" $myAngle ]
@@ -1852,14 +1915,20 @@ binary scan $inMsg i1 rtoken
 
 if { $rtoken == $PICO_TOKEN(PICO_ANGLE) } {
 
-	binary scan $inMsg i1i1i1i1f1 rtoken myID tv_sec tv_usec myReading
+	# 32bits
+	#binary scan $inMsg i1i1i1i1f1 rtoken myID tv_sec tv_usec myReading
+	# 64bits
+	binary scan $inMsg i1i1w1w1f1 rtoken myID tv_sec tv_usec myReading
 	logit $loggerID $this $fn $MASK_MISC $logMask \
 	[format "myReading = %f" $myReading ]
 
 	
 } else { 
-
+	
+	# 32bits
 	binary scan $inMsg i1i1i1i1i1 rtoken myID tv_sec tv_usec myReading
+	# 64bits
+	binary scan $inMsg i1i1w1w1i1 rtoken myID tv_sec tv_usec myReading
 	logit $loggerID $this $fn $MASK_MISC $logMask \
 	[format "myReading = %d" $myReading ]
 

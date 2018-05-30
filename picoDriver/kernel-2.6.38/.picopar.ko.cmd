@@ -1,0 +1,1 @@
+cmd_/home/jemartins/Projects/picopar/kernel-2.6.38/picopar.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o /home/jemartins/Projects/picopar/kernel-2.6.38/picopar.ko /home/jemartins/Projects/picopar/kernel-2.6.38/picopar.o /home/jemartins/Projects/picopar/kernel-2.6.38/picopar.mod.o ;  true

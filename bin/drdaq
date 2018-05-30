@@ -40,8 +40,8 @@ if [ ! -d $HOME/.drdaq ]; then
 fi
 
 # set this two vars to your drdaq and simpl installation tree
-export DRDAQ_HOME=/usr/lib/drdaq
-export SIMPL_HOME=/usr/lib/simpl
+#export DRDAQ_HOME=/usr/lib/drdaq
+#export SIMPL_HOME=/usr/lib/simpl
 
 WORK_DIR=$HOME/.drdaq
 export FIFO_PATH=$WORK_DIR/fifo
